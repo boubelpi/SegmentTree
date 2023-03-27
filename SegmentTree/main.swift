@@ -10,7 +10,7 @@ import Foundation
 class lazy_segment_tree {
         var tre : [Int]
         var pp : [Int]
-        let a : [Int]
+        let a : [Int] 
         init(_ tre : [Int],_ pp : [Int],_ a : [Int]) {
             self.tre = tre
             self.pp = pp
@@ -49,3 +49,39 @@ class lazy_segment_tree {
             self.tre[v] = self.tre[v * 2] + self.tre[v * 2 + 1]
         }
 };
+
+let n : Int = 3 //TODO : read from console
+var nums1 = Array(repeating : 0, count : 0)
+var nums2 = Array(repeating : 0, count : 0)
+for i in 0...n - 1 {
+    let x : Int = 1 - i % 2 //TODO : read from console
+    nums1.append(x)
+}
+for _ in 0...n - 1 {
+    let x : Int = 0 //TODO : read from console
+    nums2.append(x)
+}
+let tre = Array(repeating : 0, count : 8 * n)
+let pp = Array(repeating : 0, count : 8 * n)
+var lst = lazy_segment_tree(tre, pp, nums1)
+lst.build(1, 0, n - 1)
+let queries = [[1, 1, 1], [2, 1, 0], [3, 0, 0]]
+var sum = 0
+var ans = Array(repeating : 0, count : 0)
+for t in queries {
+    let type = t[0]
+    if (type == 1) {
+        let left = t[1]
+        let right = t[2]
+        lst.update(1, 0, n - 1, left, right)
+    }
+    else if (type == 2) {
+        let p = t[1]
+        sum += p * lst.tre[1] //sum of all elements of array is node which has number 1
+    }
+    else {
+        ans.append(sum)
+    }
+}
+print(ans)
+//TODO : add comments
