@@ -91,4 +91,10 @@ for t in queries { //coming through queries
     }
 }
 print(ans)
-//TODO : add comments
+
+/*
+ The task is: you have two array nums1 and nums2 of length n, it's known that elements of array nums1 are equal either to 0 or 1. There are some queries (not more than 1e5), there are three types of queries:
+ - first type: you are given segment [left, right], you need to change each element of array nums1, that's equal to 0, to 1, and change each element, that's equal to 1, to 0.
+ - second type: you are given the number p, you need to add to each element of array nums2 multiplication of nums1[i] (if we check nums2[i]) to p
+ - third type: you should print the sum of elements of array nums2
+ */
