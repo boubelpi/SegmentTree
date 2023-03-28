@@ -93,8 +93,14 @@ for t in queries { //coming through queries
 print(ans)
 
 /*
- The task is: you have two array nums1 and nums2 of length n, it's known that elements of array nums1 are equal either to 0 or 1. There are some queries (not more than 1e5), there are three types of queries:
+ The task is: you have two array nums1 and nums2 of length n (n is not more than 1e5), it's known that elements of array nums1 are equal either to 0 or 1. There are some queries (not more than 1e5), there are three types of queries:
  - first type: you are given segment [left, right], you need to change each element of array nums1, that's equal to 0, to 1, and change each element, that's equal to 1, to 0.
  - second type: you are given the number p, you need to add to each element of array nums2 multiplication of nums1[i] (if we check nums2[i]) to p
  - third type: you should print the sum of elements of array nums2
+ */
+
+/*
+ Let's make very important observation: because elements of array nums1 are equal either to 1 or 0 (and also because the queries of third type ask only for the sum of elements at the whole segment), we can find the sum of all elements and then find multiplication of it and p. So it's enough for third type of queries.
+ Let's also make other observation: if the length of some segment of array nums1 is equal to len and the sum of elements of array nums1 at this segment is equal to sum, then after completing the query of the first type we get that the sum of elements at this segment will be equal to len - sum.
+ These observations lead to the final solution of the task: we can have lazy segment tree, that will complete the queries of the first type and that will help us to complete the queries of the second type (we will use only one element of that segment tree, just because we need to find the sum at the whole array). So, using segment tree, we get solution that runs on time for O(nlogn).
  */
